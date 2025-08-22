@@ -26,9 +26,11 @@ RUN uv venv --python 3.10 && \
     uv sync --extra cpu --no-cache
 
 # Copy project files including models
-COPY --chown=appuser:appuser api ./api
-COPY --chown=appuser:appuser web ./web
-COPY --chown=appuser:appuser docker/scripts/ ./
+COPY --chown=appuser:appuser ../scripts/ ./
+COPY --chown=appuser:appuser ../api ./api
+COPY --chown=appuser:appuser ../web ./web
+COPY --chown=appuser:appuser ../pyproject.toml ./pyproject.toml
+
 RUN chmod +x ./entrypoint.sh
 
 # Set environment variables
