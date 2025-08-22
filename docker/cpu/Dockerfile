@@ -25,10 +25,10 @@ COPY --chown=appuser:appuser pyproject.toml ./pyproject.toml
 RUN uv venv --python 3.10 && \
     uv sync --extra cpu --no-cache
 
-# Copy project files including models
-COPY --chown=appuser:appuser ../scripts/ ./
-COPY --chown=appuser:appuser ../api ./api
-COPY --chown=appuser:appuser ../web ./web
+# Copy project files relative to root context
+COPY --chown=appuser:appuser scripts/ ./scripts
+COPY --chown=appuser:appuser api ./api
+COPY --chown=appuser:appuser web ./web
 
 RUN chmod +x ./entrypoint.sh
 
